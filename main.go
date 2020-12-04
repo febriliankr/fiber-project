@@ -1,17 +1,16 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
 	"go-mysql-react/helpers"
 	"go-mysql-react/models"
 	"log"
-	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/gofiber/fiber/middleware"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
-func returnAllUsers(w http.ResponseWriter, r *http.Request) {
+func getAllUsers(c *fiber.Ctx) error {
 	var users models.Users
 	var arrUser []models.Users
 	var response models.Response
@@ -37,16 +36,32 @@ func returnAllUsers(w http.ResponseWriter, r *http.Request) {
 	response.Message = "Success"
 	response.Data = arrUser
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(response)
+	if err != nil {
+		return c.Status(500).JSON(&fiber.Map{
+			"success": false,
+			"message": "Failed to retrieve data",
+		})
+	}
 
+	return c.Status(200).JSON(&fiber.Map{
+		"success": true,
+		"message": "data retrieved 🔥",
+		"data":    response,
+	})
 }
 
 func main() {
 
-	r := mux.NewRouter()
-	r.HandleFunc("/getUsers", returnAllUsers).Methods("GET")
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
-	fmt.Println("Connected to http://localhost:3000")
-	http.ListenAndServe(":3000", r)
+	app := fiber.New()
+	app.Use(cors.New())
+	app.Static("/", "./static")
+
+	app.Get("/api/getUser/:param", func(c *fiber.Ctx) error {
+		return c.SendString("param: " + c.Params("param"))
+	})
+
+	app.Get("/api/getAllUsers", getAllUsers)
+
+	app.Listen(":8080")
+
 }
