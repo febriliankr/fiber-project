@@ -5,7 +5,6 @@ import (
 	"go-mysql-react/models"
 	"log"
 
-	"github.com/gofiber/fiber/middleware"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
