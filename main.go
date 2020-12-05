@@ -60,6 +60,6 @@ func main() {
 
 	app.Get("/api/getAllUsers", getAllUsers)
 
-	app.Listen(":8080")
+	app.Listen(":13322")
 
 }
