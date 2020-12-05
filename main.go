@@ -5,7 +5,6 @@ import (
 	"go-mysql-react/models"
 	"log"
 
-	"github.com/gofiber/fiber/middleware"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
@@ -55,7 +54,6 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New())
 	app.Static("/", "./static")
-	app.Use(middleware.Logger())
 	app.Get("/api/getUser/:param", func(c *fiber.Ctx) error {
 		return c.SendString("param: " + c.Params("param"))
 	})
