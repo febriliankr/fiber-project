@@ -8,7 +8,9 @@ import (
 )
 
 func ConnectDB() *sql.DB {
-	db, err := sql.Open("mysql", "root:@tcp(127.0.0.1:3306)/golang_app")
+	dbURL := "us-cdbr-east-02.cleardb.com"
+	dbName := "heroku_ac60454d09cc541"
+	db, err := sql.Open("mysql", "b7da67a7641056:91838c9c@tcp("+dbURL+")/"+dbName)
 
 	if err != nil {
 		log.Fatal(err)
