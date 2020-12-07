@@ -1,5 +1,7 @@
 # Fiber (Go) and NextTS
 
-## Deployment
+Fiber is a golang framework, and the frontend is deployed with nextjs with typescript
 
-https://dev.to/heavykenny/how-to-deploy-a-golang-app-to-heroku-5g1j
+## Demo
+
+https://fiber-golang.herokuapp.com/
