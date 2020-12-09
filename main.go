@@ -55,6 +55,7 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New())
 	app.Static("/", "./static")
+	
 	app.Get("/api/getUser/:param", func(c *fiber.Ctx) error {
 		return c.SendString("param: " + c.Params("param"))
 	})
