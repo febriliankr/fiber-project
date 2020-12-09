@@ -8,6 +8,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.2.3
 	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
+	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/klauspost/compress v1.11.3 // indirect
 	// github.com/joho/godotenv v1.3.0
 	go-mysql-react/helpers v1.1.0
